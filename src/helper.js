@@ -1,3 +1,8 @@
+// Contains Command E modification
+// Prevent Webpack warning on every build due to dynamic require()
+// WARNING in ./node_modules/umzug/lib/helper.js 18:15-30
+// Critical dependency: the request of a dependency is an expression
+
 module.exports = {
   /**
    * Try to require module from file relative to process cwd or regular require.
@@ -7,19 +12,6 @@ module.exports = {
    * @returns {*|undefined} Required module
    */
   resolve: function (packageName) {
-    let result;
-
-    try {
-      result = require.resolve(packageName, { basedir: process.cwd() });
-      result = require(result);
-    } catch (e) {
-      try {
-        result = require(packageName);
-      } catch (e) {
-        result = undefined;
-      }
-    }
-
-    return result;
+    return undefined;
   },
 };

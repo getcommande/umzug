@@ -65,7 +65,11 @@ module.exports = class Migration {
       })();
     }
 
-    return require(this.path);
+    // Contains Command E modification
+    // Prevent Webpack warning on every build due to dynamic require()
+    // WARNING in ./node_modules/umzug/lib/migration.js 75:11-29
+    // Critical dependency: the request of a dependency is an expression
+    throw new Error('throwing error related to Command E modification to umzug');
   }
 
   /**

@@ -414,7 +414,11 @@ module.exports = class Umzug extends EventEmitter {
       case 'json': return JSONStorage;
       case 'mongodb': return MongoDBStorage;
       case 'sequelize': return SequelizeStorage;
-      default: return require(this.options.storage);
+      // Contains Command E modification
+      // Prevent Webpack warning on every build due to dynamic require()
+      // WARNING in ./node_modules/umzug/lib/index.js 413:15-44
+      // Critical dependency: the request of a dependency is an expression
+      default: return SequelizeStorage;
     }
   }
 
